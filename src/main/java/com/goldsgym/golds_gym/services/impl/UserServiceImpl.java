@@ -27,17 +27,20 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getUserById(int id) {
-        return null;
+    public UserDto getUserById(int id) {
+        User user = userRepository.
+                findById(id).
+                orElseThrow(() -> new RuntimeException("User Id doesnt exist"));
+        return userMapper.mapToUserDto(user);
     }
 
     @Override
-    public List<User> getAllUsers() {
+    public List<UserDto> getAllUsers() {
         return List.of();
     }
 
     @Override
-    public User updateUserLastNameById(int id, String lastName) {
+    public UserDto updateUserLastNameById(int id, String lastName) {
         return null;
     }
 
