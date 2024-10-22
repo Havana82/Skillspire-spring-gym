@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class UserMapper {
-
+    // Convert DTO object into a Entity object
     public User mapToUser(UserDto userDto){
         User user = new User(
                 userDto.getId(),
@@ -15,6 +15,17 @@ public class UserMapper {
                 userDto.getAddress()
         );
         return user;
+    }
+
+    // Convert a Entity object into a DTO object
+    public UserDto mapToUserDto(User user){
+        UserDto userDto = new UserDto(
+                user.getId(),
+                user.getFirstName(),
+                user.getLastName(),
+                user.getAddress()
+        );
+        return userDto;
     }
 }
 

@@ -1,5 +1,7 @@
 package com.goldsgym.golds_gym.services.impl;
 
+import com.goldsgym.golds_gym.dto.UserDto;
+import com.goldsgym.golds_gym.mapper.UserMapper;
 import com.goldsgym.golds_gym.models.User;
 import com.goldsgym.golds_gym.repositories.UserRepository;
 import com.goldsgym.golds_gym.services.UserService;
@@ -11,9 +13,12 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
 
     private UserRepository userRepository;
+    private UserMapper userMapper;
     @Override
-    public User createUser(User user) {
-        return null;
+    public UserDto createUser(UserDto userDto) {
+        User user = userMapper.mapToUser(userDto);
+        User savedUser = userRepository.save(user);
+        return userMapper.mapToUserDto(savedUser);
     }
 
     @Override
