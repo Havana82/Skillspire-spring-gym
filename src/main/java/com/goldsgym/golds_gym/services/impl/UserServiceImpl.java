@@ -5,6 +5,7 @@ import com.goldsgym.golds_gym.mapper.UserMapper;
 import com.goldsgym.golds_gym.models.User;
 import com.goldsgym.golds_gym.repositories.UserRepository;
 import com.goldsgym.golds_gym.services.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,8 +13,12 @@ import java.util.List;
 @Service
 public class UserServiceImpl implements UserService {
 
+    @Autowired
     private UserRepository userRepository;
+
+    @Autowired
     private UserMapper userMapper;
+
     @Override
     public UserDto createUser(UserDto userDto) {
         User user = userMapper.mapToUser(userDto);
