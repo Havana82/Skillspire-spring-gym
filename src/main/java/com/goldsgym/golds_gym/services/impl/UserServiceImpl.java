@@ -40,8 +40,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDto updateUserLastNameById(int id, String lastName) {
-        return null;
+    public UserDto updateUserAddressById(int id, String address) {
+        User user = userRepository.
+                findById(id).
+                orElseThrow(() -> new RuntimeException("User Id doesnt exist"));
+        user.setAddress(address);
+        User savedProduct = userRepository.save(user);
+        return userMapper.mapToUserDto(savedProduct);
     }
 
     @Override

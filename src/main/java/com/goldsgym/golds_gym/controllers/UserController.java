@@ -6,6 +6,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
@@ -23,6 +25,12 @@ public class UserController {
     @GetMapping("/{id}")
     public ResponseEntity<UserDto> getUserById(@PathVariable int id ){
         UserDto userDto = userService.getUserById(id);
+        return ResponseEntity.ok(userDto);
+    }
+    @PutMapping("{id}/address")
+    public ResponseEntity<UserDto> updateUserAddressById(@PathVariable int id, @RequestBody Map<String, String> request){
+        String updatedAddress = request.get("address");
+        UserDto userDto = userService.updateUserAddressById(id, updatedAddress);
         return ResponseEntity.ok(userDto);
     }
 }
