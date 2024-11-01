@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -27,10 +28,23 @@ public class UserController {
         UserDto userDto = userService.getUserById(id);
         return ResponseEntity.ok(userDto);
     }
+
+    @GetMapping
+    public ResponseEntity<List<UserDto>> getAllUsers() {
+        List<UserDto> userDtos = userService.getAllUsers();
+        return ResponseEntity.ok(userDtos);
+    }
+
     @PutMapping("{id}/address")
     public ResponseEntity<UserDto> updateUserAddressById(@PathVariable int id, @RequestBody Map<String, String> request){
         String updatedAddress = request.get("address");
         UserDto userDto = userService.updateUserAddressById(id, updatedAddress);
         return ResponseEntity.ok(userDto);
+    }
+
+    @DeleteMapping("{id}")
+    public ResponseEntity<String> deleteUserById(@PathVariable int id) {
+        String response = userService.deleteUserById(id);
+        return ResponseEntity.ok(response);
     }
 }

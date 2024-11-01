@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -36,7 +37,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<UserDto> getAllUsers() {
-        return List.of();
+        List<User> users = userRepository.findAll();
+        List<UserDto> userDtos = users.stream().map(userMapper::mapToUserDto)
+                .collect(Collectors.toList());
+
+        return userDtos;
     }
 
     @Override
@@ -51,6 +56,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public String deleteUserById(int id) {
-        return "";
+        if (userRepository.existsById(id)) {
+            userRepository.deleteById(id);
+            return "Successfully deleted user " + id;
+        }
+        else {
+            return "No record of that ID found.";
+        }
     }
 }
