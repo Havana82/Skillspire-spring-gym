@@ -1,7 +1,6 @@
 package com.goldsgym.golds_gym.services.impl;
 
 import com.goldsgym.golds_gym.dto.GymDto;
-import com.goldsgym.golds_gym.models.User;
 import com.goldsgym.golds_gym.services.GymService;
 
 import java.util.List;
@@ -33,21 +32,45 @@ public class GymServiceImpl implements GymService {
 
     @Override
     public GymDto getGymById(int id) {
-        return null;
+        Gym gym = gymRepository.
+                findById(id).
+                orElseThrow(() -> new RuntimeException("Gym Id doesnt exist"));
+        return gymMapper.mapToGymDto(gym);
     }
 
     @Override
     public List<GymDto> getAllGyms() {
-        return List.of();
+        List<Gym> gyms = gymRepository.findAll();
+        List<GymDto> gymDtos = gyms.stream().map(gymMapper::mapToGymDto)
+                .collect(Collectors.toList());
+
+        return gymDtos;
     }
 
     @Override
     public GymDto updateGymById(int id, GymDto gymDto) {
-        return null;
+        Gym gym = gymRepository.
+                findById(id).
+                orElseThrow( () -> new RuntimeException("Gym of this ID does not exist") );
+
+
+       gym.setAddress(gymDto.getAddress());
+       gym.setManagerName(gymDto.getManagerName());
+
+       Gym savedGym = gymRepository.save(gym);
+
+        return gymMapper.mapToGymDto(savedGym);
     }
 
     @Override
     public String deleteGymById(int id) {
-        return "";
+
+        if (gymRepository.existsById(id)) {
+            gymRepository.deleteById(id);
+            return "Successfully deleted gym " + id;
+        }
+        else {
+            return "No record of that ID found.";
+        }
     }
 }
