@@ -36,7 +36,7 @@ public class GymController {
 
     @PutMapping("{id}")
     public ResponseEntity<GymDto> updateGymById(@PathVariable int id, @RequestBody GymDto gymDto) {
-        GymDto updatedGymDto = gymService.updateGymById(id, , gymDto);
+        GymDto updatedGymDto = gymService.updateGymById(id, gymDto);
         return ResponseEntity.ok(updatedGymDto);
     }
 
