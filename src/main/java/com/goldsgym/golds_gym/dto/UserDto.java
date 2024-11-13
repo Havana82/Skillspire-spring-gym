@@ -1,5 +1,6 @@
 package com.goldsgym.golds_gym.dto;
 
+import com.goldsgym.golds_gym.models.Gym;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -10,5 +11,6 @@ public class UserDto {
     private String firstName;
     private String lastName;
     private String address;
+    private Gym gymId;
 }
 //

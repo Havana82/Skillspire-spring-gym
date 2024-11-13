@@ -12,7 +12,8 @@ public class UserMapper {
                 userDto.getId(),
                 userDto.getFirstName(),
                 userDto.getLastName(),
-                userDto.getAddress()
+                userDto.getAddress(),
+                userDto.getGymId()
         );
         return user;
     }
@@ -23,7 +24,8 @@ public class UserMapper {
                 user.getId(),
                 user.getFirstName(),
                 user.getLastName(),
-                user.getAddress()
+                user.getAddress(),
+                user.getGym_id()
         );
         return userDto;
     }

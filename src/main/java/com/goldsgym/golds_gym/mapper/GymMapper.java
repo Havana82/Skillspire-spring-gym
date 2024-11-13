@@ -11,7 +11,9 @@ public class GymMapper {
         Gym gym = new Gym(
                 gymDto.getId(),
                 gymDto.getAddress(),
-                gymDto.getManagerName()
+                gymDto.getManagerName(),
+                gymDto.getUsers()
+
         );
         return gym;
     }
@@ -21,7 +23,9 @@ public class GymMapper {
         GymDto gymDto = new GymDto(
                 gym.getId(),
                 gym.getAddress(),
-                gym.getManagerName()
+                gym.getManagerName(),
+                gym.getUsers()
+
         );
         return gymDto;
     }

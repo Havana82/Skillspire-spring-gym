@@ -1,6 +1,7 @@
 package com.goldsgym.golds_gym.controllers;
 
 import com.goldsgym.golds_gym.dto.GymDto;
+import com.goldsgym.golds_gym.dto.UserDto;
 import com.goldsgym.golds_gym.services.GymService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

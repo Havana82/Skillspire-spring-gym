@@ -22,5 +22,8 @@ public class User {
     private String lastName;
     @Column(name="address")
     private String address;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "gym_id")
+    private Gym gym_id;
 }
 
