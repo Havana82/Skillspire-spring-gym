@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 public class GymMapper {
     public Gym mapToGym(GymDto gymDto){
         Gym gym = new Gym();
-        gym.setId(gym.getId());
+        gym.setId(gymDto.getId());
         gym.setAddress(gymDto.getAddress());
         gym.setManagerName(gymDto.getManagerName());
 //        Gym gym = new Gym(
