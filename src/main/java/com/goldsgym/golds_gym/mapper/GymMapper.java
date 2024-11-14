@@ -6,15 +6,18 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class GymMapper {
-
     public Gym mapToGym(GymDto gymDto){
-        Gym gym = new Gym(
-                gymDto.getId(),
-                gymDto.getAddress(),
-                gymDto.getManagerName(),
-                gymDto.getUsers()
+        Gym gym = new Gym();
+        gym.setId(gym.getId());
+        gym.setAddress(gymDto.getAddress());
+        gym.setManagerName(gymDto.getManagerName());
+//        Gym gym = new Gym(
+//                gymDto.getId(),
+//                gymDto.getAddress(),
+//                gymDto.getManagerName(),
+//                gymDto.getUsers()
 
-        );
+//        );
         return gym;
     }
 
@@ -23,8 +26,8 @@ public class GymMapper {
         GymDto gymDto = new GymDto(
                 gym.getId(),
                 gym.getAddress(),
-                gym.getManagerName(),
-                gym.getUsers()
+                gym.getManagerName()
+//                gym.getUsers()
 
         );
         return gymDto;
