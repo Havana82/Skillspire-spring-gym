@@ -11,6 +11,6 @@ public class UserDto {
     private String firstName;
     private String lastName;
     private String address;
-    private Gym gymId;
+    private int gymId;
 }
 //
