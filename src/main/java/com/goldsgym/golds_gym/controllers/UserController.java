@@ -28,6 +28,10 @@ public class UserController {
         UserDto userDto = userService.getUserById(id);
         return ResponseEntity.ok(userDto);
     }
+    @GetMapping("/gym/{gym_id}")
+    public ResponseEntity<List<UserDto>> getUsersByGymId(@PathVariable int gymId){
+        return ResponseEntity.ok(userService.getUsersByGymId(gymId));
+    }
 
     @GetMapping
     public ResponseEntity<List<UserDto>> getAllUsers() {

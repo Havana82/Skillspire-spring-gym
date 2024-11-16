@@ -3,6 +3,7 @@ package com.goldsgym.golds_gym.services.impl;
 import com.goldsgym.golds_gym.dto.UserDto;
 import com.goldsgym.golds_gym.mapper.UserMapper;
 import com.goldsgym.golds_gym.models.User;
+import com.goldsgym.golds_gym.repositories.GymRepository;
 import com.goldsgym.golds_gym.repositories.UserRepository;
 import com.goldsgym.golds_gym.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserMapper userMapper;
+
+    @Autowired
+    private GymRepository gymRepository;
 
     @Override
     public UserDto createUser(UserDto userDto) {
@@ -42,6 +46,15 @@ public class UserServiceImpl implements UserService {
                 .collect(Collectors.toList());
 
         return userDtos;
+    }
+
+    @Override
+    public List<UserDto> getUsersByGymId(int gymId) {
+        if (gymRepository.existsById(gymId)){
+            List<User> users = userRepository.getByGym(gymId);
+            return users.stream().map(userMapper::mapToUserDto).collect(Collectors.toUnmodifiableList());
+        }
+        return null;
     }
 
     @Override
